@@ -38,8 +38,8 @@ var customers = [{
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'view.html'));
+app.get('/index.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/form.html', function (req, res) {
@@ -52,51 +52,7 @@ app.get("/view.html", function(req,res){
 })
 
 
-// app.post('/api/new', function (req, res) {
-//   var newRes = req.body;
-//   newRes.routeName = newcharacter.name.replace(/\s+/g, '').toLowerCase();
 
-
-//   // Link to mySQL Database
-//   var connection = mysql.createConnection({
-//       host: "localhost",
-//       port: 3306,
-//       user: "root", //Your username
-//       password: "1234", //Your password
-//       database: "FoodParadise"
-//   });
-
-
-//   // Push to SQL
-//   connection.connect(function(err) {
-//     if (err) throw err;
-//     console.log("connected as id " + connection.threadId);
-
-//     connection.query('INSERT INTO characters SET ?', {
-//        CustomerName: reserve_name,
-//        UserPhone: reserve_phone,
-//        CustomerEmail: reserve_email,
-//       CustomerID: reserve_uniqueID
-//       }, function(err, res){
-
-//       if(err){
-//         console.log('\nSorry. The SQL database could not be updated.');
-//         // console.log(err)
-//         connection.end(); // end the script/connection
-//       }
-//       else{
-//         console.log('\nCharacter was added to SQL database!')
-//         connection.end(); // end the script/connection
-//       }
-    
-//     }); // end update query
-
-//   }); // end database connection
-
-
-
-//   res.json(newRes);
-// });
 
 app.listen(3000,()=>{
   console.log("app listening on port 3000");
@@ -110,15 +66,26 @@ app.get('/api/:customers?', function (req, res) {
     console.log(chosen);
 
     for (var i = 0; i < customers.length; i++) {
+      console.log(customers[i])
       if (chosen === customers[i].CustomerName) {
         res.json(customers[i]);
         return;
       }
     }
+    res.json(customers)
 
-    res.json(false);
+    // res.json(false);
   } else {
     res.json(customers);
   }
 });
 
+app.post('/test', function (req,res) {
+  // var input = 'helloworld'
+  var input = req.body.firstName;
+
+  var testCustomer = {'name': input}
+  customers.push(testCustomer);
+  console.log(customers);
+  res.json(customers);
+})
