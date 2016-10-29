@@ -18,19 +18,20 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
+})
 
 var customers = [{
   CustomerName: 'Melissa',
   UserPhone: '6858799998',
-  CustomerEmail: 200364dffg@gmail.com
+  CustomerEmail: 'aaaadffg@gmail.com'
 }, {
   CustomerName: 'Avani',
   UserPhone: '29730888999',
-  CustomerEmail: ytnn@gmail.com
+  CustomerEmail: 'ytnn@gmail.com'
 }, {
   CustomerName: 'Krishna',
-  UserPhone: ,'11115286017',
-  CustomerEmail: stdhjfgu@gmail.com
+  UserPhone: '11115286017',
+  CustomerEmail: 'stdhjfgu@gmail.com'
 }];
 
 // Routes
@@ -41,61 +42,61 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'view.html'));
 });
 
-app.get('/form', function (req, res) {
+app.get('/form.html', function (req, res) {
   res.sendFile(path.join(__dirname, 'form.html'));
 });
 
 
-app.get("/view", function(){
+app.get("/view.html", function(req,res){
   res.sendFile(path.join(__dirname, 'view.html'))
 })
 
 
-app.post('/api/new', function (req, res) {
-  var newRes = req.body;
-  newRes.routeName = newcharacter.name.replace(/\s+/g, '').toLowerCase();
+// app.post('/api/new', function (req, res) {
+//   var newRes = req.body;
+//   newRes.routeName = newcharacter.name.replace(/\s+/g, '').toLowerCase();
 
 
-  // Link to mySQL Database
-  var connection = mysql.createConnection({
-      host: "localhost",
-      port: 3306,
-      user: "root", //Your username
-      password: "1234", //Your password
-      database: "FoodParadise"
-  });
+//   // Link to mySQL Database
+//   var connection = mysql.createConnection({
+//       host: "localhost",
+//       port: 3306,
+//       user: "root", //Your username
+//       password: "1234", //Your password
+//       database: "FoodParadise"
+//   });
 
 
-  // Push to SQL
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+//   // Push to SQL
+//   connection.connect(function(err) {
+//     if (err) throw err;
+//     console.log("connected as id " + connection.threadId);
 
-    connection.query('INSERT INTO characters SET ?', {
-       CustomerName: reserve_name,
-       UserPhone: reserve_phone,
-       CustomerEmail: reserve_email,
-      CustomerID: reserve_uniqueID
-      }, function(err, res){
+//     connection.query('INSERT INTO characters SET ?', {
+//        CustomerName: reserve_name,
+//        UserPhone: reserve_phone,
+//        CustomerEmail: reserve_email,
+//       CustomerID: reserve_uniqueID
+//       }, function(err, res){
 
-      if(err){
-        console.log('\nSorry. The SQL database could not be updated.');
-        // console.log(err)
-        connection.end(); // end the script/connection
-      }
-      else{
-        console.log('\nCharacter was added to SQL database!')
-        connection.end(); // end the script/connection
-      }
+//       if(err){
+//         console.log('\nSorry. The SQL database could not be updated.');
+//         // console.log(err)
+//         connection.end(); // end the script/connection
+//       }
+//       else{
+//         console.log('\nCharacter was added to SQL database!')
+//         connection.end(); // end the script/connection
+//       }
     
-    }); // end update query
+//     }); // end update query
 
-  }); // end database connection
+//   }); // end database connection
 
 
 
-  res.json(newRes);
-});
+//   res.json(newRes);
+// });
 
 app.listen(3000,()=>{
   console.log("app listening on port 3000");
