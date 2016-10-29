@@ -1,3 +1,4 @@
+
 var express = require('express');
 var app = express();
 
@@ -17,11 +18,33 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
+
+var customers = [{
+  CustomerName: 'Melissa',
+  UserPhone: '6858799998',
+  CustomerEmail: 200364dffg@gmail.com
+}, {
+  CustomerName: 'Avani',
+  UserPhone: '29730888999',
+  CustomerEmail: ytnn@gmail.com
+}, {
+  CustomerName: 'Krishna',
+  UserPhone: ,'11115286017',
+  CustomerEmail: stdhjfgu@gmail.com
+}];
+
+// Routes
+// =============================================================
+
+// Basic route that sends the user first to the AJAX Page
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'view.html'));
 });
 
 app.get('/form', function (req, res) {
   res.sendFile(path.join(__dirname, 'form.html'));
 });
+
 
 app.get("/view", function(){
   res.sendFile(path.join(__dirname, 'view.html'))
@@ -77,3 +100,24 @@ app.post('/api/new', function (req, res) {
 app.listen(3000,()=>{
   console.log("app listening on port 3000");
 })
+
+// Search for Specific Character (or all characters) - provides JSON
+app.get('/api/:customers?', function (req, res) {
+  var chosen = req.params.customers;
+
+  if (chosen) {
+    console.log(chosen);
+
+    for (var i = 0; i < customers.length; i++) {
+      if (chosen === customers[i].CustomerName) {
+        res.json(customers[i]);
+        return;
+      }
+    }
+
+    res.json(false);
+  } else {
+    res.json(customers);
+  }
+});
+
