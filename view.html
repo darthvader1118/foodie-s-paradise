@@ -1,64 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Hot</title>
- <!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
- <!-- Latest compiled and minified CSS -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <style>
-   .link{color: white;}
- </style>
+    <title>Hot</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+    .link {
+        color: white;
+    }
+    </style>
 </head>
+
 <body>
-<div class=container>
-       <div class="page-header">
-           <h1>Hot Restaurant</h1>
-           <small>Make your Reservations</small>
- </div>
-   <div>
-   <button type= "button" class="btn btn-primary"><a class="link" href="view.html">View Table</a></button>
-   <button type= "button" class="btn btn-primary"><a class="link" href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></a></span></button>
-   </div>
-<br>
-<div class="row">
-      <div class="col-lg-12">
-
-        <!-- Current Tables in Use -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Current Reservations</h4>
-          </div>
-          <div class="panel-body" id="tableSection">
-          <div id="table1">
-          <h2><span class="label label-primary"></span> </h2>
-          </div>
-          <div class="data" id="table2">
-          <h2><span class="label label-primary"></span></h2>
-          </div>
-          <div class="data" id="table3"><h2><span class="label label-primary"></span></h2>
-          </div>
-          </div>
+    <div class=container>
+        <div class="page-header">
+            <h1>Hot Restaurant</h1>
+            <small>Make your Reservations</small>
         </div>
-
-        <!-- Waiting List Panel -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Waiting List</h4>
-          </div>
-          <div class="panel-body" id="waitlistsection">
-          </div>
+        <div>
+            <button type="button" class="btn btn-primary"><a class="link" href="form.html">Make Reservation</a></button>
+            <button type="button" class="btn btn-primary"><a class="link" href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></a></span>
+            </button>
         </div>
-      </div>
-    </div>
-    <br>
-    <footer>
- <p><a href="#">
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Current Tables in Use -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Current Reservations</h4>
+                    </div>
+                    <div class="panel-body" id="tableSection">
+                        <div id="table1">
+                            <h2><span class="label label-primary"></span> </h2>
+                        </div>
+                        <div class="data" id="table2">
+                            <h2><span class="label label-primary"></span></h2>
+                        </div>
+                        <div class="data" id="table3">
+                            <h2><span class="label label-primary"></span></h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Waiting List Panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Waiting List</h4>
+                    </div>
+                    <div class="panel-body" id="waitlistsection">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <footer>
+            <p><a href="#">
  API table link</a> |
- <a href="#">API wait list</a></p>
-</footer>
+                <a href="#">API wait list</a></p>
+        </footer>
+</body>
 
-    </body>
-    </html>
-    
+</html>

@@ -7,6 +7,22 @@ var path = require('path');
 // Require mySQL node package
 var mysql = require('mysql');
 
+// Link to mySQL Database
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root", //Your username
+    password: "", //Your password
+    database: "FoodParadise"
+});
+
+  // Push to SQL
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("connected as id " + connection.threadId);
+}); // end database connection
+
+
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -23,55 +39,46 @@ app.get('/form', function (req, res) {
   res.sendFile(path.join(__dirname, 'form.html'));
 });
 
-app.get("/view", function(){
+app.get("/view", function(req,res){
   res.sendFile(path.join(__dirname, 'view.html'))
 })
 
 
-app.post('/api/new', function (req, res) {
+app.post('/submit', function (req, res) {
+
+  // <form method="POST" action="/submit"
+  console.log(req.body);
   var newRes = req.body;
-  newRes.routeName = newcharacter.name.replace(/\s+/g, '').toLowerCase();
+  // newRes.routeName = newCharacter.name.replace(/\s+/g, '').toLowerCase();
 
 
-  // Link to mySQL Database
-  var connection = mysql.createConnection({
-      host: "localhost",
-      port: 3306,
-      user: "root", //Your username
-      password: "1234", //Your password
-      database: "FoodParadise"
-  });
 
 
-  // Push to SQL
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
 
-    connection.query('INSERT INTO characters SET ?', {
-       CustomerName: reserve_name,
-       UserPhone: reserve_phone,
-       CustomerEmail: reserve_email,
-      CustomerID: reserve_uniqueID
+    connection.query('INSERT INTO FoodReservation1 SET ?', {
+       CustomerName: newRes.resName,
+       UserPhone: newRes.resPhone,
+       CustomerEmail: newRes.resEmail
+      // CustomerID: newRes.resId
       }, function(err, res){
 
       if(err){
         console.log('\nSorry. The SQL database could not be updated.');
-        // console.log(err)
-        connection.end(); // end the script/connection
+        console.log(err)
+        // connection.end(); // end the script/connection
       }
       else{
         console.log('\nCharacter was added to SQL database!')
-        connection.end(); // end the script/connection
+        // connection.end(); // end the script/connection
       }
     
     }); // end update query
 
-  }); // end database connection
 
 
 
-  res.json(newRes);
+
+  res.redirect('/view');
 });
 
 app.listen(3000,()=>{
